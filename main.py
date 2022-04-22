@@ -8,10 +8,14 @@ def main():
     screen_size = (1920, 1080)
     surface = create_main_surface(screen_size)
     while (True):
+        process_key_input(state)
         update(state)
         render_frame(state, surface)
 
 def update(state):
+    State.render(state)
+
+def process_key_input(state):
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
@@ -22,7 +26,14 @@ def update(state):
                 State.increment_y(state)
             if event.key == pygame.K_RIGHT:
                 State.increment_x(state)
-    State.render(state)
+    # if pygame.key.get_pressed()[pygame.K_LEFT]:
+    #     State.decrement_x(state)
+    # if pygame.key.get_pressed()[pygame.K_UP]:
+    #     State.decrement_y(state)
+    # if pygame.key.get_pressed()[pygame.K_DOWN]:
+    #     State.decrement_y(state)
+    # if pygame.key.get_pressed()[pygame.K_RIGHT]:
+    #     State.increment_x(state)
 
 def render_frame(state, surface):
     #clock = pygame.time.Clock()
